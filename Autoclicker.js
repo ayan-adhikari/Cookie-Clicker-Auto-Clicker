@@ -1,9 +1,9 @@
-//Assigning elements to variables
-const cookie = document.getElementById(`bigCookie`)
+//Arrays for storing buildings
+const buildings = [`Cursor`, `Grandma`, `Farm`, `Mine`, `Factory`, `Bank`, `Temple`, `Wizard Tower`, `Shipment`, `Alchemy Lab
+`, `Portal`, `Time Machine`, `Antimatter Condenser`, `Prism`, `Chancemaker`, `Fractal Engine`, 
+`Javascript Console`, `Idleverse`, `Cortex Baker`, `You`]
 //Other variables
 let randInt
-let clicks = 500
-let cookieInterval
 //Random number function
 function generateRandomNumber(min, max) 
 {
@@ -17,39 +17,16 @@ function a()
 //Function to click cookie/building/upgrades
 function click()
 {
+    //Click cookie
     Game.ClickCookie()
-    for (let i = 0; i++; i>=20)
-    {
-        document.getElementById(`product${i}`).click()
-    }
-    randInt = generateRandomNumber()
+    //Buy a random building
+    randInt = generateRandomNumber(0, 19)
+    Game.ObjectsById[randInt].buy();
+    //Buy a random upgrade
+    randInt = generateRandomNumber(0, 800)
+    Game.UpgradesById[randInt].buy();   
+    //Set a random pause
+    randInt = generateRandomNumber(1, 25)
+    //Rerun the function after the random pause
     setTimeout(click, randInt)
 }
-
-//Function to buy buildings
-/*
-function buyBuilding(x)
-{
-    let i = 0
-    while (i <= x)
-    {
-        const building = document.getElementById(`product${}`)
-        setTimeout(a, 10)
-        console.log(`${button} clicked: ${i} times.`)
-        i += 1
-    }
-}
-//Function to buy upgrades
-
-function buyUpgrade(x)
-{
-    let i = 0
-    while (i <= x)
-    {
-
-        setTimeout(a, 10)
-        console.log(`${building} clicked: ${i} times.`)
-        i += 1
-    }
-}
-    */
