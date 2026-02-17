@@ -24,7 +24,23 @@ function click()
     Game.ObjectsById[randInt].buy();
     //Buy a random upgrade
     randInt = generateRandomNumber(0, 800)
-    Game.UpgradesById[randInt].buy();   
+    //Prevent script from buying occult obstruction (sets cookies per second to 0)
+    if (randInt != 398)
+    {
+        Game.UpgradesById[randInt].buy();   
+    }
+    else
+    {
+        randInt = generateRandomNumber(0, 800)
+        if (randInt != 398)
+        {
+            Game.UpgradesById[randInt].buy();   
+        }
+        else
+        {
+            console.log("No available upgrades")
+        }
+    }
     //Set a random pause
     randInt = generateRandomNumber(1, 25)
     //Rerun the function after the random pause
