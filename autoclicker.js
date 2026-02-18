@@ -1,5 +1,7 @@
 //randInt variable (used when a random integer is needed)
 let randInt
+//Prevent script from buying occult obstruction (sets cookies per second to 0) or permanent upgrtade slots or milk/background upgrades
+const dontBuy = [398, 264, 265, 266, 267, 268, 333, 414]
 //Random number function
 function generateRandomNumber(min, max) 
 {
@@ -18,8 +20,8 @@ function click()
     {
         //Buy a random upgrade
         randInt = generateRandomNumber(0, 800)
-        //Prevent script from buying occult obstruction (sets cookies per second to 0) or permanent upgrtade slots
-        if (randInt != 398 && randInt != 264 && randInt != 265 && randInt != 266 && randInt != 267 && randInt != 268)
+        
+        if (!dontBuy.includes(randInt))
         {
             Game.UpgradesById[randInt].buy();
             break;
