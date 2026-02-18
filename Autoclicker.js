@@ -1,18 +1,9 @@
-//Arrays for storing buildings
-const buildings = [`Cursor`, `Grandma`, `Farm`, `Mine`, `Factory`, `Bank`, `Temple`, `Wizard Tower`, `Shipment`, `Alchemy Lab
-`, `Portal`, `Time Machine`, `Antimatter Condenser`, `Prism`, `Chancemaker`, `Fractal Engine`, 
-`Javascript Console`, `Idleverse`, `Cortex Baker`, `You`]
-//Other variables
+//randInt variable (used when a random integer is needed)
 let randInt
 //Random number function
 function generateRandomNumber(min, max) 
 {
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-//Filler function
-function a()
-{
-    console.log()
 }
 //Function to click cookie/building/upgrades
 function click()
@@ -22,23 +13,16 @@ function click()
     //Buy a random building
     randInt = generateRandomNumber(0, 19)
     Game.ObjectsById[randInt].buy();
-    //Buy a random upgrade
-    randInt = generateRandomNumber(0, 800)
-    //Prevent script from buying occult obstruction (sets cookies per second to 0)
-    if (randInt != 398)
+    //Loop for buying a random upgrade
+    while (true)
     {
-        Game.UpgradesById[randInt].buy();   
-    }
-    else
-    {
+        //Buy a random upgrade
         randInt = generateRandomNumber(0, 800)
-        if (randInt != 398)
+        //Prevent script from buying occult obstruction (sets cookies per second to 0) or permanent upgrtade slots
+        if (randInt != 398 && randInt != 264 && randInt != 265 && randInt != 266 && randInt != 267 && randInt != 268)
         {
-            Game.UpgradesById[randInt].buy();   
-        }
-        else
-        {
-            console.log("No available upgrades")
+            Game.UpgradesById[randInt].buy();
+            break;
         }
     }
     //Set a random pause
